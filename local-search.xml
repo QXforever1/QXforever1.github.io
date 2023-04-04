@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Art题解</title>
+    <link href="/2023/04/04/Art%E9%A2%98%E8%A7%A3/"/>
+    <url>/2023/04/04/Art%E9%A2%98%E8%A7%A3/</url>
+    
+    <content type="html"><![CDATA[<h1 id="moectf-Art-writeup"><a href="#moectf-Art-writeup" class="headerlink" title="moectf Art writeup"></a>moectf Art writeup</h1><p>首先将题目所给的exe文件拖入EXEInofope中查看发现有一个UPX壳，</p><p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304041235736.png" alt="image-20220829210908121"></p><p>然后使用UPXshell工具对其进行脱壳，接着将脱壳完成的文件拖入IDAx64中查看找到main函数，按F5进行伪代码分析</p><p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304041235745.png" alt="image-20220829211102041"></p><p>分析得到主要加密为for ( i &#x3D; 1; i &lt;&#x3D; 27; ++i )<br>    Str1[i - 1] ^&#x3D; (Str1[i - 1] % 17 + Str1[i]) ^ 0x19;</p><p>Str1即为我们要输入的flag</p><p>往下接着看找到Str2，发现将Str1与Str2进行了比较，然后跟进Str2使用shift+e提取十六进制字符得到</p><p>02 18 0F F8 19 04 27 D8 EB 00 35 48 4D 2A 45 6B 59 2E 43 01 18 5C 09 09 09 09 B5 7D</p><p>这船十六进制数为flag经过加密得到的</p><p>下面进行解密：<br>分析flag的开头是moectf</p><p>m的ascll码值为109所以将其设置为第一个数那么第一个数是由下面一个数进行计算得来的，所以后面那一个数为未知数，我们使用循环的方式将其爆破出来我们只需要将式子照抄然后将Str1[i]换为一个循环数字进行爆破代码如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br>using namespace <span class="hljs-built_in">std</span>;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;<br><span class="hljs-type">int</span> Str1[<span class="hljs-number">28</span>]=&#123;<span class="hljs-number">0x02</span>, <span class="hljs-number">0x18</span>, <span class="hljs-number">0x0F</span>, <span class="hljs-number">0xF8</span>, <span class="hljs-number">0x19</span>, <span class="hljs-number">0x04</span>, <span class="hljs-number">0x27</span>, <span class="hljs-number">0xD8</span>, <span class="hljs-number">0xEB</span>, <span class="hljs-number">0x00</span>, <br>  <span class="hljs-number">0x35</span>, <span class="hljs-number">0x48</span>, <span class="hljs-number">0x4D</span>, <span class="hljs-number">0x2A</span>, <span class="hljs-number">0x45</span>, <span class="hljs-number">0x6B</span>, <span class="hljs-number">0x59</span>, <span class="hljs-number">0x2E</span>, <span class="hljs-number">0x43</span>, <span class="hljs-number">0x01</span>, <br>  <span class="hljs-number">0x18</span>, <span class="hljs-number">0x5C</span>, <span class="hljs-number">0x09</span>, <span class="hljs-number">0x09</span>, <span class="hljs-number">0x09</span>, <span class="hljs-number">0x09</span>, <span class="hljs-number">0xB5</span>, <span class="hljs-number">0x7D</span>&#125;;<br>  <span class="hljs-type">int</span> flag[<span class="hljs-number">28</span>]=&#123;<span class="hljs-number">0</span>&#125;;<br>  flag[<span class="hljs-number">27</span>]=Str1[<span class="hljs-number">27</span>];<br>  flag[<span class="hljs-number">0</span>]=<span class="hljs-number">109</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">27</span>;i++)<br>  &#123;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-number">128</span>;j++)<br>  &#123;<br>  <span class="hljs-type">int</span> a=flag[i<span class="hljs-number">-1</span>]^(flag[i<span class="hljs-number">-1</span>]% <span class="hljs-number">17</span> + j) ^ <span class="hljs-number">25</span>;<br>  <span class="hljs-keyword">if</span>(Str1[i<span class="hljs-number">-1</span>]==a)<br>  &#123;<br>  flag[i]=j;<br>  <span class="hljs-keyword">break</span>;<br>  &#125;<br>&#125;<br>  &#125;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=<span class="hljs-number">27</span>;i++)<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>,flag[i]);<br>&#125; <br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>逆向题解</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CTF逆向</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ezbase题解</title>
     <link href="/2023/04/03/ezbase%E9%A2%98%E8%A7%A3/"/>
     <url>/2023/04/03/ezbase%E9%A2%98%E8%A7%A3/</url>
