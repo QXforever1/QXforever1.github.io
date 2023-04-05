@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":"ture","scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":"ture","scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading1.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -280,9 +280,9 @@
               <div class="markdown-body">
                 
                 <h1 id="moectf-Art-writeup"><a href="#moectf-Art-writeup" class="headerlink" title="moectf Art writeup"></a>moectf Art writeup</h1><p>首先将题目所给的exe文件拖入EXEInofope中查看发现有一个UPX壳，</p>
-<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304041235736.png" srcset="/img/loading.gif" lazyload alt="image-20220829210908121"></p>
+<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304041235736.png" srcset="/img/loading1.gif" lazyload alt="image-20220829210908121"></p>
 <p>然后使用UPXshell工具对其进行脱壳，接着将脱壳完成的文件拖入IDAx64中查看找到main函数，按F5进行伪代码分析</p>
-<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304041235745.png" srcset="/img/loading.gif" lazyload alt="image-20220829211102041"></p>
+<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304041235745.png" srcset="/img/loading1.gif" lazyload alt="image-20220829211102041"></p>
 <p>分析得到主要加密为for ( i &#x3D; 1; i &lt;&#x3D; 27; ++i )<br>    Str1[i - 1] ^&#x3D; (Str1[i - 1] % 17 + Str1[i]) ^ 0x19;</p>
 <p>Str1即为我们要输入的flag</p>
 <p>往下接着看找到Str2，发现将Str1与Str2进行了比较，然后跟进Str2使用shift+e提取十六进制字符得到</p>

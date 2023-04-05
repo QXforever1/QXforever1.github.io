@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":"ture","scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":"ture","scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading1.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -280,11 +280,11 @@
               <div class="markdown-body">
                 
                 <h1 id="IDA代码段"><a href="#IDA代码段" class="headerlink" title="IDA代码段"></a>IDA代码段</h1><h2 id="text段"><a href="#text段" class="headerlink" title="text段"></a>text段</h2><p>该段位程序代码，在该段一开始就可以看到</p>
-<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304022146679.png" srcset="/img/loading.gif" lazyload alt="image-20220923192707143"></p>
+<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304022146679.png" srcset="/img/loading1.gif" lazyload alt="image-20220923192707143"></p>
 <p>这里的段类型和权限说的很清楚：分别分为代码段和可读可执行。需要注意的是，borland这里叫做code而不是text</p>
 <h2 id="idata、rdata、data段"><a href="#idata、rdata、data段" class="headerlink" title="idata、rdata、data段"></a>idata、rdata、data段</h2><p>三个段全为存放特殊数据的段，但IDA根据PE文件的格式将数据段中不同的数据分。</p>
 <h3 id="1-idata段"><a href="#1-idata段" class="headerlink" title="1.idata段"></a>1.idata段</h3><p>该段在一开始一般有类似下面说明：</p>
-<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304022146682.png" srcset="/img/loading.gif" lazyload alt="image-20220923194413503"></p>
+<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304022146682.png" srcset="/img/loading1.gif" lazyload alt="image-20220923194413503"></p>
 <p>明显是一个imports函数的代码段，这里集中所有外部函数地址，代码中会先跳到该地址后再执行，PE文件加载器在开始会获取真实的函数地址来修idata中的函数地址。</p>
 <p>与之对应的exports是edata，表面上看PE文件对该段的定位是特殊数据段。</p>
 <h3 id="2-rdata段"><a href="#2-rdata段" class="headerlink" title="2.rdata段"></a>2.rdata段</h3><p>名字上看是源数据段，程序用到什么资源都在这里，资源包括自己封包的，也包括开发工具自动封包的。</p>
