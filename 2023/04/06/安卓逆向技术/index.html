@@ -18,24 +18,22 @@
   <meta name="author" content="秦杰">
   <meta name="keywords" content="">
   
-    <meta name="description" content="APK 文件结构apk全程Android Package，相当于一个压缩文件，只要在电脑上将apk后缀改为rar或者zip即可解压 assets目录 （不一定有，但比较常见）存放APK的静态资源文件，比如视频、音频、图片等 静态资源文件主要指存放在assets 文件夹中的文件。assets 文件夹是一种未经编译的资源目录，它会被打包进 APK 文件中，在安装应用程序之后可以被访问。assets 文">
+    <meta name="description" content="安卓逆向技术安卓逆向技术是指通过对安卓应用程序进行分析和反编译，了解其内部结构和实现方式的技术。安卓逆向技术可以帮助安全研究人员发现安全漏洞，也可以帮助开发人员理解其他应用程序的实现方式。在本文中，我们将介绍安卓逆向技术的基本原理和常用工具。 1. 基本原理安卓应用程序是使用Java编写的，最终被编译为.dex文件。.dex文件是Dalvik虚拟机的可执行文件格式，Dalvik虚拟机是安卓系统中的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Apk文件结构">
-<meta property="og:url" content="http://example.com/2023/04/02/Apk%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:title" content="安卓逆向技术">
+<meta property="og:url" content="http://example.com/2023/04/06/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="APK 文件结构apk全程Android Package，相当于一个压缩文件，只要在电脑上将apk后缀改为rar或者zip即可解压 assets目录 （不一定有，但比较常见）存放APK的静态资源文件，比如视频、音频、图片等 静态资源文件主要指存放在assets 文件夹中的文件。assets 文件夹是一种未经编译的资源目录，它会被打包进 APK 文件中，在安装应用程序之后可以被访问。assets 文">
+<meta property="og:description" content="安卓逆向技术安卓逆向技术是指通过对安卓应用程序进行分析和反编译，了解其内部结构和实现方式的技术。安卓逆向技术可以帮助安全研究人员发现安全漏洞，也可以帮助开发人员理解其他应用程序的实现方式。在本文中，我们将介绍安卓逆向技术的基本原理和常用工具。 1. 基本原理安卓应用程序是使用Java编写的，最终被编译为.dex文件。.dex文件是Dalvik虚拟机的可执行文件格式，Dalvik虚拟机是安卓系统中的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304021941251.png">
-<meta property="article:published_time" content="2023-04-02T06:44:55.000Z">
-<meta property="article:modified_time" content="2023-04-06T08:41:02.277Z">
+<meta property="article:published_time" content="2023-04-06T08:38:14.000Z">
+<meta property="article:modified_time" content="2023-04-06T08:41:00.071Z">
 <meta property="article:author" content="秦杰">
 <meta property="article:tag" content="Android 逆向">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304021941251.png">
   
   
   
-  <title>Apk文件结构 - </title>
+  <title>安卓逆向技术 - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Apk文件结构"></span>
+            <span id="subtitle" data-typed-text="安卓逆向技术"></span>
           
         </div>
 
@@ -216,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-02 14:44" pubdate>
-          星期日, 四月 2日 2023, 2:44 下午
+        <time datetime="2023-04-06 16:38" pubdate>
+          星期四, 四月 6日 2023, 4:38 下午
         </time>
       </span>
     
@@ -229,7 +227,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3.7k 字
+          1.1k 字
         
       </span>
     
@@ -241,7 +239,7 @@
         
         
           <!-- compatible with older versions-->
-          31 分钟
+          10 分钟
         
       </span>
     
@@ -279,77 +277,25 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Apk文件结构</h1>
+            <h1 style="display: none">安卓逆向技术</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="APK-文件结构"><a href="#APK-文件结构" class="headerlink" title="APK 文件结构"></a>APK 文件结构</h2><p>apk全程Android Package，相当于一个压缩文件，只要在电脑上将apk后缀改为rar或者zip即可解压</p>
-<h3 id="assets目录-（不一定有，但比较常见）"><a href="#assets目录-（不一定有，但比较常见）" class="headerlink" title="assets目录 （不一定有，但比较常见）"></a>assets目录 （不一定有，但比较常见）</h3><p>存放APK的静态资源文件，比如视频、音频、图片等</p>
-<p>静态资源文件主要指存放在assets 文件夹中的文件。assets 文件夹是一种未经编译的资源目录，它会被打包进 APK 文件中，在安装应用程序之后可以被访问。assets 文件夹中的文件不会被解压缩，这意味着它们的访问速度会比较快，但是会占用更多的安装包空间。通常情况下，开发者会将应用程序中的静态文件、配置文件、原始数据或者其他不常改变的文件放在 assets 文件夹中。这样可以使得应用程序的下载包大小变小，并且可以更快速地访问这些文件。</p>
-<h3 id="lib目录（不一定有，但比较常见）"><a href="#lib目录（不一定有，但比较常见）" class="headerlink" title="lib目录（不一定有，但比较常见）"></a>lib目录（不一定有，但比较常见）</h3><p>armeabi-v7a基本通用所有的安卓设备，arm64-v8a只适用于64位的安卓设备，x86常见于安卓模拟器，其目录下的.so文件时c或者c++编译的动态链接库文件</p>
-<p>库文件主要指lib文件夹中的文件，在这个文件夹中，存放了运行APP所需要的so文件，也就是动态链接库的二进制文件。为了适配不同安卓系统处理器的版本，lib文件夹中的so库也是按不同处理器版本的文件夹分类放置。在图3的示例中，分成了三种文件夹包括armeabi、armeabi-v7a和x86文件夹，分别用来存储适配arm5架构、arm7架构、Intel32架构的CPU处理器版本的安卓系统。例如，如果智能手机使用的是arm7架构CPU处理器版本的安卓系统，APP在运行时就会调用armeabi-v7a文件夹下的动态链接库文件执行程序。</p>
-<p>在安卓系统中库文件分文两种，一种是共享库文件（Shared Libraries），另一种是本地库文件（Native Libraries）。共享库文件是可供多个应用程序使用的库，它们被存放在系统目录中。在 Android 系统中，共享库文件以 .so 为后缀，常见的共享库文件包括 libc.so 和 libm.so。</p>
-<p>而lib文件夹存放的就是本地库文件。本地库是专门为应用程序所使用的库，它们被打包进 APK 文件中，在安装应用程序之后会被放到私有目录中。在 Android 系统中，本地库文件也以 .so 为后缀，armeabi-v7a的so文件示例见图4。对于一个 Android 应用程序来说，本地库文件往往是应用程序所特有的，并且不会被其他应用程序使用。例如，一个应用程序可能使用本地库文件来封装特定的硬件访问功能，或者使用本地库文件来进行加密解密操作。</p>
-<h3 id="META-INF目录"><a href="#META-INF目录" class="headerlink" title="META-INF目录"></a>META-INF目录</h3><p>保存应用的签名信息，签名信息可以验证APK文件的完整性，相当于APK的身份证（验证文件是否又被修改）</p>
-<p>签名文件指的是存放在META-INF文件夹中的文件。META-INF 文件夹是 Android 系统中的一种特殊文件夹，它用来存放应用程序的签名信息。在 META-INF 文件夹中可以找到三种常见的文件：CERT.RSA、CERT.SF和MANIFEST.MF，META-INF文件夹示例见图5。CERT.RSA、CERT.SF这两个文件用来存放应用程序的签名信息。当安装一个应用程序时，Android 系统会检查这两个文件，确保应用程序的完整性和安全性。MANIFEST.MF文件用来存放应用程序的所有文件的清单信息。</p>
-<p>当打包应用程序时，这些文件会自动生成，并且会被打包进 APK 文件中。通常情况下，不需要手动修改这些文件，但是有时候可能需要编辑这些文件来更新应用程序的版本号或者修改权限要求。</p>
-<p>META-INF文件夹，用于存放签名证书，在APK安装时作为校验的凭据，用于保护APK不被恶意篡改，同时也是对APK著作权和所有权的声名。例如，对安装包的任意文件最作修改，导致安卓系统检查计算后的签名信息与APK文件中存储的签名信息不一致，最终无法安装，会出现签名冲突的问题。</p>
-<h3 id="res目录"><a href="#res目录" class="headerlink" title="res目录"></a>res目录</h3><p>res目录存放资源文件，包括图片，字符串等等，APK的脸蛋由他的layout文件设计</p>
-<h3 id="res目录与asstes目录的区别"><a href="#res目录与asstes目录的区别" class="headerlink" title="res目录与asstes目录的区别"></a>res目录与asstes目录的区别</h3><ol>
-<li>assets目录不会在R.java文件下生成相应标记，存放到R.java中的资源在运行打包时都会打入程序安装包中</li>
-<li>res目录会在R.java文件下生成相应的标记。</li>
-</ol>
-<p>在res文件夹下还可以定义一下目录：</p>
-<p>res&#x2F;anim:这里存放的是动画资源</p>
-<p>res&#x2F;xml:可以在Activity中使用getResource().getXML()读取这里的资源文件</p>
-<p>res&#x2F;raw:该目录下的文件可以直接复制到设备上，编译软件时，这里的数据不需要编译，直接加入到程序安装包中，使用的方法是getResource().OpenRawResources(ID),其中参数ID的形式是R.raw.XXX、</p>
-<h3 id="res-x2F-raw和assets的相同点"><a href="#res-x2F-raw和assets的相同点" class="headerlink" title="res&#x2F;raw和assets的相同点"></a>res&#x2F;raw和assets的相同点</h3><p>两者目录下的文件在打包后会原封不动的保存在apk包中，不会被编译成二进制</p>
-<h3 id="res-x2F-raw和assets的不同点"><a href="#res-x2F-raw和assets的不同点" class="headerlink" title="res&#x2F;raw和assets的不同点"></a>res&#x2F;raw和assets的不同点</h3><p>1.res&#x2F;raw中的文件会被映射到R.java文件中，访问的时候直接使用资源ID即R.id.filename;assets文件下的文件不会被映射到R.java中，访问的时候需要AssetManger类。</p>
-<p>2.res&#x2F;raw不可以有目录结构，而assets则可以有目录结构，也就是assets目录下可以再建立文件夹</p>
-<h4 id="读取文件资源："><a href="#读取文件资源：" class="headerlink" title="读取文件资源："></a>读取文件资源：</h4><p> 1.读取res&#x2F;raw下的文件资源，通过以下方式获取输入流来进行写操作<br> · InputStream is &#x3D;getResources().openRawResource(R.id.filename);<br> 2.读取assets下的文件资源，通过以下方式获取输入流来进行写操作<br> · AssetManager am &#x3D; null;<br> · am &#x3D; getAssets();<br> · InputStream is &#x3D; am.open(“filename”);</p>
-<h3 id="AndroidMainfest-xml-文件"><a href="#AndroidMainfest-xml-文件" class="headerlink" title="AndroidMainfest.xml 文件"></a>AndroidMainfest.xml 文件</h3><p>APK的应用清单信息，它描述了应用的名字，版本，权限，引用的库文件等等信息</p>
-<p>xml文件中存放着应用的Activity信息</p>
-<h3 id="classes-dex文件"><a href="#classes-dex文件" class="headerlink" title="classes.dex文件"></a>classes.dex文件</h3><p>classes.dex是java源码编译后生成的java字节码文件，APK运行的主要逻辑，是apk文件的核心代码文件</p>
-<p>核心代码文件主要指classes.dex文件。classes.dex文件是 Android 系统中的重要代码文件，它是 Dalvik 可执行文件的缩写。Dalvik 是 Android 系统中的一种虚拟机，它负责在 Android 系统中运行应用程序的代码。classes.dex文件运行在Dalvik虚拟机上的核心代码文件，它反编译后的语言是smali代码语言，smali代码可转换为java代码。对于大的APK文件会出现多个dex文件，但在APP实际运行的过程中会将多个dex文件合并成一个dex文件运行。APK打包时存放多个dex的原因是每个dex文件的大小是有限制的。</p>
-<p>.dex 文件中存放的是 Java 字节码，这是 Java 编译器编译出来的机器码。.dex 文件本身是一种二进制文件，它使用一种特殊的格式来存放字节码。</p>
-<p>在打包 Android 应用程序时，.dex 文件会自动生成，并且会被打包进 APK 文件中。当你安装应用程序时，.dex 文件会被解压缩并放到私有目录中，然后被 Dalvik 虚拟机加载并运行。</p>
-<p>.dex 文件的好处是，它可以使得应用程序的下载包大小变小，因为 Java 字节码文件可以被压缩得比较小。但是，.dex 文件的缺点是，它的访问速度略慢于共享库文件。因此，在 Android 系统中，一般情况下会尽量使用共享库文件来实现应用程序的功能。</p>
-<h3 id="resources-arsc文件"><a href="#resources-arsc文件" class="headerlink" title="resources.arsc文件"></a>resources.arsc文件</h3><p>resources.arsc是编译后的二进制资源文件，它是一个映射表，映射着资源和id，通过R文件中的id就可以找到对应的资源</p>
-<p>AndroidManifest.xml文件是整个应用程序的信息描述文件，定义了应用程序中包含的Activity,Service,Content provider和BroadcastReceiver组件信息。每个应用程序在根目录下必须包含一个AndroidManifest.xml文件，且文件名不能修改。它描述了package中暴露的组件，他们各自的实现类，各种能被处理的数据和启动位置。</p>
-<table>
-<thead>
-<tr>
-<th>versionCode</th>
-<th>版本号，主要用来更新，例如:12</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>versionName</td>
-<td>版本名，给用户看的，例如:1.2</td>
-</tr>
-<tr>
-<td>package</td>
-<td>包名，例如：com.zj.52pj.demo</td>
-</tr>
-<tr>
-<td>uses-permission android:name&#x3D;””</td>
-<td>应用权限，例如：android.permission.INTERNET 代表网络权限</td>
-</tr>
-<tr>
-<td>android:label&#x3D;”@string&#x2F;app_name”</td>
-<td>应用名称</td>
-</tr>
-<tr>
-<td>android:icon&#x3D;”@mipmap&#x2F;ic_launcher”</td>
-<td>应用图标路径</td>
-</tr>
-<tr>
-<td>android:debuggable&#x3D;”true”</td>
-<td>应用是否开启debug权</td>
-</tr>
-</tbody></table>
-<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304021941251.png" srcset="/img/loading1.gif" lazyload alt="小美"></p>
+                <h1 id="安卓逆向技术"><a href="#安卓逆向技术" class="headerlink" title="安卓逆向技术"></a>安卓逆向技术</h1><p>安卓逆向技术是指通过对安卓应用程序进行分析和反编译，了解其内部结构和实现方式的技术。安卓逆向技术可以帮助安全研究人员发现安全漏洞，也可以帮助开发人员理解其他应用程序的实现方式。在本文中，我们将介绍安卓逆向技术的基本原理和常用工具。</p>
+<h2 id="1-基本原理"><a href="#1-基本原理" class="headerlink" title="1. 基本原理"></a>1. 基本原理</h2><p>安卓应用程序是使用Java编写的，最终被编译为.dex文件。.dex文件是Dalvik虚拟机的可执行文件格式，Dalvik虚拟机是安卓系统中的一个虚拟机，用于运行安卓应用程序。因此，如果要进行安卓逆向，就需要先将.dex文件反编译为Java源代码。反编译后的Java源代码可以很容易地被阅读和理解。</p>
+<h2 id="2-常用工具"><a href="#2-常用工具" class="headerlink" title="2. 常用工具"></a>2. 常用工具</h2><h3 id="a-apktool"><a href="#a-apktool" class="headerlink" title="a. apktool"></a>a. apktool</h3><p>apktool是一款反编译安卓应用程序的工具。它可以将安卓应用程序的.apk文件解包为.dex文件、资源文件和其他文件，然后将.dex文件反编译为Java源代码。使用apktool，可以查看应用程序的源代码、资源文件和配置文件等。</p>
+<h3 id="b-jadx"><a href="#b-jadx" class="headerlink" title="b. jadx"></a>b. jadx</h3><p>jadx是一款开源的Java反编译器，可以将.dex文件反编译为Java源代码。jadx可以在Windows、Linux和macOS上运行，可以查看应用程序的源代码、类、方法等信息。jadx还提供了搜索、导出和调试等功能，方便进行更深入的逆向分析。</p>
+<h3 id="c-IDA-Pro"><a href="#c-IDA-Pro" class="headerlink" title="c. IDA Pro"></a>c. IDA Pro</h3><p>IDA Pro是一款强大的反汇编工具，可以用于分析和修改二进制文件。IDA Pro可以将.dex文件反汇编为汇编代码，还可以反编译为C语言代码。使用IDA Pro，可以分析应用程序的内存分配、函数调用、程序流程等信息。</p>
+<h2 id="3-注意事项"><a href="#3-注意事项" class="headerlink" title="3. 注意事项"></a>3. 注意事项</h2><p>在进行安卓逆向时，需要注意以下事项：</p>
+<ul>
+<li>尊重知识产权：反编译他人应用程序可能会侵犯知识产权，因此在进行逆向分析时需要遵守法律法规，尊重知识产权。</li>
+<li>保护隐私：安卓应用程序中可能包含用户隐私信息，因此在进行逆向分析时需要注意保护用户隐私。</li>
+<li>可能会遇到加密和混淆：开发人员可能会使用加密和混淆技术来保护应用程序，因此在进行逆向分析时需要了解这些技术，并使用相应的工具进行破解。</li>
+</ul>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>安卓逆向技术是一项强大的技能，可以帮助安全研究人员识别和修复应用程序中的安全漏洞，也可以帮助开发人员理解其他应用程序的实现方式。然而，需要注意的是，在进行逆向分析时，需要遵守法律法规，尊重知识产权和保护用户隐私。</p>
+<p>此外，需要了解开发人员可能使用的加密和混淆技术，并使用相应的工具进行破解。常用的安卓逆向工具包括apktool、jadx和IDA Pro等。</p>
+<p>总之，安卓逆向技术是一项强大的技能，可以帮助我们更好地理解和掌握安卓应用程序的内部实现方式。但是，在进行逆向分析时需要注意法律法规和道德规范，以及保护用户隐私和知识产权。</p>
 
                 
               </div>
@@ -395,8 +341,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Apk文件结构</div>
-      <div>http://example.com/2023/04/02/Apk文件结构/</div>
+      <div>安卓逆向技术</div>
+      <div>http://example.com/2023/04/06/安卓逆向技术/</div>
     </div>
     <div class="license-meta">
       
@@ -408,7 +354,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月2日</div>
+          <div>2023年4月6日</div>
         </div>
       
       
@@ -440,15 +386,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/02/sp%E5%88%86%E6%9E%90%E5%BC%82%E5%B8%B8/" title="sp分析异常">
+                      <a href="/2023/04/06/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/" title="安卓逆向技术详解">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">sp分析异常</span>
+                        <span class="hidden-mobile">安卓逆向技术详解</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/04/04/Art%E9%A2%98%E8%A7%A3/" title="Art题解">
+                        <span class="hidden-mobile">Art题解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
