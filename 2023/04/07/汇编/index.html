@@ -18,22 +18,24 @@
   <meta name="author" content="秦杰">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安卓逆向技术详解安卓逆向技术是一种通过分析和破解应用程序，了解其内部结构和实现方式的技术。它可以用于安全研究、漏洞挖掘、反制侵权行为等多个方面。本文将介绍安卓逆向技术的具体技术和常用工具。 1. 反编译反编译是安卓逆向技术的基础，它是将编译后的二进制代码重新转换为高级语言的过程。对于安卓应用程序，我们可以使用一些工具将其反编译成Java源代码，然后进行分析和修改。 常用的反编译工具有apktool">
+    <meta name="description" content="汇编字节(bit)1 byte&#x3D;8bit 1word&#x3D;2byte&#x3D;16bit 1char&#x3D; 1byte&#x3D;8bit 1short&#x3D;2byte&#x3D;16bit 1int&#x3D;4byte&#x3D;32bit 1float&#x3D;4byte&#x3D;32bit 1double&#x3D;8byte&#x3D;64bit 1lo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安卓逆向技术详解">
-<meta property="og:url" content="http://example.com/2023/04/06/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:title" content="汇编">
+<meta property="og:url" content="http://example.com/2023/04/07/%E6%B1%87%E7%BC%96/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="安卓逆向技术详解安卓逆向技术是一种通过分析和破解应用程序，了解其内部结构和实现方式的技术。它可以用于安全研究、漏洞挖掘、反制侵权行为等多个方面。本文将介绍安卓逆向技术的具体技术和常用工具。 1. 反编译反编译是安卓逆向技术的基础，它是将编译后的二进制代码重新转换为高级语言的过程。对于安卓应用程序，我们可以使用一些工具将其反编译成Java源代码，然后进行分析和修改。 常用的反编译工具有apktool">
+<meta property="og:description" content="汇编字节(bit)1 byte&#x3D;8bit 1word&#x3D;2byte&#x3D;16bit 1char&#x3D; 1byte&#x3D;8bit 1short&#x3D;2byte&#x3D;16bit 1int&#x3D;4byte&#x3D;32bit 1float&#x3D;4byte&#x3D;32bit 1double&#x3D;8byte&#x3D;64bit 1lo">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-06T08:41:46.000Z">
-<meta property="article:modified_time" content="2023-04-07T06:42:30.307Z">
+<meta property="og:image" content="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304071447999.png">
+<meta property="article:published_time" content="2023-04-07T06:47:23.000Z">
+<meta property="article:modified_time" content="2023-04-07T06:48:19.840Z">
 <meta property="article:author" content="秦杰">
-<meta property="article:tag" content="Android 逆向">
+<meta property="article:tag" content="汇编语言">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304071447999.png">
   
   
   
-  <title>安卓逆向技术详解 - </title>
+  <title>汇编 - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="安卓逆向技术详解"></span>
+            <span id="subtitle" data-typed-text="汇编"></span>
           
         </div>
 
@@ -214,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-06 16:41" pubdate>
-          星期四, 四月 6日 2023, 4:41 下午
+        <time datetime="2023-04-07 14:47" pubdate>
+          星期五, 四月 7日 2023, 2:47 下午
         </time>
       </span>
     
@@ -227,7 +229,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.5k 字
+          2.1k 字
         
       </span>
     
@@ -239,7 +241,7 @@
         
         
           <!-- compatible with older versions-->
-          13 分钟
+          18 分钟
         
       </span>
     
@@ -277,27 +279,94 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">安卓逆向技术详解</h1>
+            <h1 style="display: none">汇编</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="安卓逆向技术详解"><a href="#安卓逆向技术详解" class="headerlink" title="安卓逆向技术详解"></a>安卓逆向技术详解</h1><p>安卓逆向技术是一种通过分析和破解应用程序，了解其内部结构和实现方式的技术。它可以用于安全研究、漏洞挖掘、反制侵权行为等多个方面。本文将介绍安卓逆向技术的具体技术和常用工具。</p>
-<h2 id="1-反编译"><a href="#1-反编译" class="headerlink" title="1. 反编译"></a>1. 反编译</h2><p>反编译是安卓逆向技术的基础，它是将编译后的二进制代码重新转换为高级语言的过程。对于安卓应用程序，我们可以使用一些工具将其反编译成Java源代码，然后进行分析和修改。</p>
-<p>常用的反编译工具有apktool、dex2jar、jadx等。这些工具可以将应用程序的.dex文件反编译成Java源代码，方便我们进行分析和修改。</p>
-<h2 id="2-动态调试"><a href="#2-动态调试" class="headerlink" title="2. 动态调试"></a>2. 动态调试</h2><p>动态调试是指在程序运行时，通过监视和修改进程的行为，来理解程序的执行过程和内部结构。在安卓逆向中，我们可以使用动态调试技术来分析应用程序的代码逻辑、变量值、函数调用等信息。</p>
-<p>常用的动态调试工具有Frida、Xposed等。这些工具可以在安卓系统中注入自己的代码，从而拦截应用程序的函数调用，并可以在运行时对其进行修改或添加新的行为。</p>
-<h2 id="3-静态分析"><a href="#3-静态分析" class="headerlink" title="3. 静态分析"></a>3. 静态分析</h2><p>静态分析是指在不运行程序的情况下，通过分析应用程序的源代码或二进制代码，来获取程序的内部结构和执行逻辑。在安卓逆向中，静态分析可以帮助我们深入了解应用程序的代码结构和逻辑，发现潜在的漏洞和安全隐患。</p>
-<p>常用的静态分析工具有IDA Pro、Radare2等。这些工具可以反汇编应用程序的二进制代码，分析应用程序的内部结构和执行逻辑，并提供交互式的反汇编和分析功能。</p>
-<h2 id="4-Hook"><a href="#4-Hook" class="headerlink" title="4. Hook"></a>4. Hook</h2><p>Hook技术是一种在运行时修改应用程序行为的技术，它可以用于对应用程序的函数进行拦截、劫持和重定向。在安卓逆向中，我们可以使用Hook技术来拦截应用程序的函数调用，并改变其返回值或修改其参数值，从而影响应用程序的执行行为。</p>
-<p>常用的Hook工具有Xposed、Substrate等。这些工具可以在运行时对应用程序进行Hook，拦截函数调用并修改其返回值或参数值，从而达到修改应用程序行为的目的。</p>
-<h2 id="5-密码破解"><a href="#5-密码破解" class="headerlink" title="5. 密码破解"></a>5. 密码破解</h2><p>密码破解是指通过一些手段，尝试猜解或破解应用程序中保存的密码，以获取更高的权限或敏感信息。在安卓逆向中，我们可以使用密码破解技术来猜解应用程序中保存的加密密钥或密码，从而获取更多的信息和权限。</p>
-<p>常用的密码破解工具有John the Ripper、Hashcat等。这些工具可以使用字典攻击、暴力破解、彩虹表等方法，尝试猜解应用程序中保存的加密密钥或密码，从而获取更多的信息和权限。</p>
-<h2 id="6-模拟器检测"><a href="#6-模拟器检测" class="headerlink" title="6. 模拟器检测"></a>6. 模拟器检测</h2><p>模拟器检测是指应用程序中使用一些技术手段，判断当前运行环境是否为模拟器环境。在安卓逆向中，我们可以使用模拟器检测技术来绕过应用程序的模拟器检测，使其在模拟器环境下也能正常运行。</p>
-<p>常用的模拟器检测工具有Genymotion、BlueStacks等。这些工具可以模拟安卓系统环境，使我们可以在模拟器环境下运行应用程序，并绕过应用程序的模拟器检测。</p>
-<h2 id="7-反调试"><a href="#7-反调试" class="headerlink" title="7. 反调试"></a>7. 反调试</h2><p>反调试是指应用程序中使用一些技术手段，防止被逆向分析或调试。在安卓逆向中，我们可以使用反调试技术来绕过应用程序的反调试机制，使其在被逆向分析或调试时仍然能够正常运行。</p>
-<p>常用的反调试工具有Frida、Xposed等。这些工具可以在运行时对应用程序进行Hook，绕过其反调试机制，使其在被逆向分析或调试时仍然能够正常运行。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>安卓逆向技术是一项强大的技能，可以帮助我们更深入地了解应用程序的内部结构和执行逻辑。然而，在进行逆向分析时需要遵守法律法规和道德规范，以及保护用户隐私和知识产权。同时，也需要注意应用程序可能使用的加密和混淆技术，选择适当的工具进行破解。</p>
+                <h1 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h1><h2 id="字节-bit"><a href="#字节-bit" class="headerlink" title="字节(bit)"></a>字节(bit)</h2><p>1 byte&#x3D;8bit</p>
+<p>1word&#x3D;2byte&#x3D;16bit</p>
+<p>1char&#x3D; 1byte&#x3D;8bit</p>
+<p>1short&#x3D;2byte&#x3D;16bit</p>
+<p>1int&#x3D;4byte&#x3D;32bit</p>
+<p>1float&#x3D;4byte&#x3D;32bit</p>
+<p>1double&#x3D;8byte&#x3D;64bit</p>
+<p>1long&#x3D;8byte&#x3D;64bit</p>
+<h2 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h2><p>没有总线，cpu，内存，输入输出设备之间就无法沟通</p>
+<p>简言之，总线是用来通信的</p>
+<p>总线分为地址总线，数据总线和控制总线</p>
+<p><em><strong>串行和并行</strong></em></p>
+<h2 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h2><p>预编译-&gt;编译-&gt;汇编-&gt;链接</p>
+<p>gcc -E xxx.c -o xxx.i</p>
+<p>gcc -s xxx.i -o xxx.s</p>
+<p>gcc -c xxx.s -o xxx.o</p>
+<p>gcc -static xxx.o -o xxx</p>
+<h2 id="X86寄存器"><a href="#X86寄存器" class="headerlink" title="X86寄存器"></a>X86寄存器</h2><h3 id="通用寄存器"><a href="#通用寄存器" class="headerlink" title="通用寄存器"></a>通用寄存器</h3><p>八个通用寄存器用于储存操作数、运算结果和指针</p>
+<p>al（低八位） ah（高八位） ax（高低八位的组合十六位） eax（三十二位） rax（六十四位） 用处比较多，比如存储返回值</p>
+<p>bx                       常在寻址是存储基地址</p>
+<p>dx                        被用来存放整数除法产生的余数</p>
+<p>cx                        常用于控制循环次数</p>
+<p>di si                         在变址寻址时会使用</p>
+<p>bp                           指向当前栈的底部</p>
+<p>sp                            指向当前栈的顶部、</p>
+<p>EAX：操作数和结果数据的累加器</p>
+<p>EBX：指向DS段中数据的指针</p>
+<p>ECX：用于字符串和循环操作的计数器</p>
+<p>EDX：I&#x2F;O指针</p>
+<p>ESI：指向由DS寄存器指向的段中的数据的指针；字符串操作的源指针</p>
+<p>EDI：指向由ES寄存器指向的段中的数据（或目标地址）的指针；字符串操作的目标指针</p>
+<p>ESP：栈指针（位于SS段）</p>
+<p>EBP：指向栈上数据的指针（位于SS段）</p>
+<h3 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h3><p>段寄存器用于保存16位的段寄存器。是一种特殊的指针，用于确定内存中某个段的位置。</p>
+<p>代码段    cs:ip</p>
+<p>数据段   ds</p>
+<p>栈段   ss</p>
+<p>额外段   es</p>
+<p>64位下的：FS、GS</p>
+<p>不同系统用处不同，在windows下，GS用于管理线程特定的内存</p>
+<p>linux中，GS用于访问cpu特定的内存</p>
+<p>FS和GS的另一个用处 canary的保护</p>
+<h3 id="寄存器——标志寄存器"><a href="#寄存器——标志寄存器" class="headerlink" title="寄存器——标志寄存器"></a>寄存器——标志寄存器</h3><h4 id="eflags寄存器"><a href="#eflags寄存器" class="headerlink" title="eflags寄存器"></a>eflags寄存器</h4><p>OF    overflow flag    溢出标志    溢出标志OF用于反映有符号数加减运算所得结果是否溢出。<br>DF    direction flag    方向标志    控制串指令(MOVS,CMPS).DF&#x3D;1,ESl,EDI自动递减（从高地址向低地址方向处理字符串），DF&#x3D;O,ESL,EDI自动递增<br>IF interrupt enable flag     屏蔽中断标志<br>TF      trap flag      单步调试标志设置后执行一条指令就会被中断<br>SF    signal flag      符号标志正负标志位，它记录相关指令执行后，结果是否为负<br>ZF     zero flag     零标志     它记录相关指令执行后，结果是否为0；如果结为0,zf&#x3D;1，如果结果不为0,zf&#x3D;0<br>AF     auxiliary carry flag    辅助进位标志     运算过程中看最后四位，不论长度为多少。最后四位向前有进位或者借位，AF&#x3D;1,否则AF&#x3D;0;<br>PF     parity flag      奇偶标志        运算结果中“1”的个数的奇偶性，偶数个1,PF&#x3D;1,反之为0.<br>CF     carry f1ag进位标志      如果运算结果的最高位产生了一个进位或借位，其值为1，否则为0。</p>
+<h4 id="EIP寄存器"><a href="#EIP寄存器" class="headerlink" title="EIP寄存器"></a>EIP寄存器</h4><p>包含一个32位的指针，指向下一条被执行的指令</p>
+<h2 id="指令——运算指令"><a href="#指令——运算指令" class="headerlink" title="指令——运算指令"></a>指令——运算指令</h2><p>加 add    add ax,bx</p>
+<p>减 sub    sub ax,bx</p>
+<p>乘 mul    mul ax,bx</p>
+<p>除 div    div ax,bx 商存在ax，余存在bx</p>
+<p>与 and and ax,bx </p>
+<p>或 or    or ax,bx</p>
+<p>非 not  not ecx</p>
+<p>异或 xor xor eax,eax</p>
+<p>左移 shl 逻辑左移</p>
+<p>右移 shr 逻辑右移</p>
+<p>逻辑左移时，最高位丢失，最低位补0；</p>
+<p>逻辑右移时，最高位补0，最低位丢失；</p>
+<p>算术左移时，依次左移一位，尾部补0，最高的符号位保持不变。</p>
+<p>算术右移时，依次右移一位，尾部丢失，符号位右移后，原位置上复制一个符号位；</p>
+<p>循环左移时，将最高位重新放置最低位</p>
+<p>循环右移时，将最低位重新放置最高位</p>
+<p>lea eax,[ebx+8]就是将ebx+8这个值直接赋给eax，而不是把ebx+8处的内存地址里的数据赋给eax。</p>
+<p>而mov指令则恰恰相反，例如：</p>
+<p>mov eax,[ebx+8]则是把内存地址为ebx+8处的数据赋给eax。</p>
+<h2 id="指令——赋值指令"><a href="#指令——赋值指令" class="headerlink" title="指令——赋值指令"></a>指令——赋值指令</h2><p>寄存器寻址           立即数寻址           基址变址寻址</p>
+<p>mov ax,0x10        mov ax,ox18       mov [bx+di],ax</p>
+<p>mov dx,ox9                                        add [bx+si],ax</p>
+<p>mul dx</p>
+<h2 id="指令——栈相关指令"><a href="#指令——栈相关指令" class="headerlink" title="指令——栈相关指令"></a>指令——栈相关指令</h2><p>push 压栈</p>
+<p>pop 弹栈</p>
+<p>Pushfd 把eflags寄存器的内容压入栈</p>
+<p>Popfd 把栈上的内容弹出赋值给eflags寄存器</p>
+<p>Pusha 按照AX、CX、DX、BX、SP（执行PUSHA之前的值）、BP、SI和DI的顺序，将所有16位通用寄存器压入堆栈。</p>
+<p>Popa 按照相反顺序将同样的寄存器弹出栈</p>
+<h2 id="指令——跳转指令"><a href="#指令——跳转指令" class="headerlink" title="指令——跳转指令"></a>指令——跳转指令</h2><p>cmp 指令 cmp 目的操作数，源操作数   目的操作数-源操作数</p>
+<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304071447999.png" srcset="/img/loading1.gif" lazyload alt="image-20220921201731155"></p>
+<h2 id="指令——调用函数"><a href="#指令——调用函数" class="headerlink" title="指令——调用函数"></a>指令——调用函数</h2><p>call</p>
+<p>ret</p>
+<p>ip&#x3D;ss*16+sp</p>
+<p>sp&#x3D;sp+2</p>
+<p>ip&#x3D;ss*16+sp</p>
+<p>sp&#x3D;sp+2</p>
+<p>cs&#x3D;ss*16+sp</p>
+<p>sp&#x3D;sp+2</p>
 
                 
               </div>
@@ -316,7 +385,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Android%E9%80%86%E5%90%91%E7%9F%A5%E8%AF%86/" class="category-chain-item">Android逆向知识</a>
+  <a href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%9F%A5%E8%AF%86/" class="category-chain-item">汇编语言知识</a>
   
   
 
@@ -331,7 +400,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Android-%E9%80%86%E5%90%91/">#Android 逆向</a>
+        <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">#汇编语言</a>
       
     </div>
   
@@ -343,8 +412,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>安卓逆向技术详解</div>
-      <div>http://example.com/2023/04/06/安卓逆向技术详解/</div>
+      <div>汇编</div>
+      <div>http://example.com/2023/04/07/汇编/</div>
     </div>
     <div class="license-meta">
       
@@ -356,7 +425,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月6日</div>
+          <div>2023年4月7日</div>
         </div>
       
       
@@ -388,9 +457,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/07/python%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="python常见文件格式">
+                      <a href="/2023/04/07/c-c-%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" title="c/c++语言基础">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">python常见文件格式</span>
+                        <span class="hidden-mobile">c/c++语言基础</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -398,8 +467,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/06/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E6%8A%80%E6%9C%AF/" title="安卓逆向技术">
-                        <span class="hidden-mobile">安卓逆向技术</span>
+                      <a href="/2023/04/07/exe%E6%96%87%E4%BB%B6%E5%8F%8D%E7%BC%96%E8%AF%91%E4%B8%BApy%E6%96%87%E4%BB%B6/" title="exe文件反编译为py文件">
+                        <span class="hidden-mobile">exe文件反编译为py文件</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

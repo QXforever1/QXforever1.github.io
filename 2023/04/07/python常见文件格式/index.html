@@ -18,22 +18,22 @@
   <meta name="author" content="秦杰">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安卓逆向技术详解安卓逆向技术是一种通过分析和破解应用程序，了解其内部结构和实现方式的技术。它可以用于安全研究、漏洞挖掘、反制侵权行为等多个方面。本文将介绍安卓逆向技术的具体技术和常用工具。 1. 反编译反编译是安卓逆向技术的基础，它是将编译后的二进制代码重新转换为高级语言的过程。对于安卓应用程序，我们可以使用一些工具将其反编译成Java源代码，然后进行分析和修改。 常用的反编译工具有apktool">
+    <meta name="description" content="Python 常见文件格式 .py .pyc .pyw .pyo .pyd 之间的主要区别Python是一种面向对象、解释型计算机程序设计语言。Python 语法简洁、清晰，具有丰富和强大的类库。 Python 提供了一种中间编译结果保存机制，即 byte code，或更准确地说，保存 PyCodeObject。事实上，Python 确实提供了这样一种机制 —— .pyc 文件。在执行一个 .py">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安卓逆向技术详解">
-<meta property="og:url" content="http://example.com/2023/04/06/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:title" content="python常见文件格式">
+<meta property="og:url" content="http://example.com/2023/04/07/python%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="安卓逆向技术详解安卓逆向技术是一种通过分析和破解应用程序，了解其内部结构和实现方式的技术。它可以用于安全研究、漏洞挖掘、反制侵权行为等多个方面。本文将介绍安卓逆向技术的具体技术和常用工具。 1. 反编译反编译是安卓逆向技术的基础，它是将编译后的二进制代码重新转换为高级语言的过程。对于安卓应用程序，我们可以使用一些工具将其反编译成Java源代码，然后进行分析和修改。 常用的反编译工具有apktool">
+<meta property="og:description" content="Python 常见文件格式 .py .pyc .pyw .pyo .pyd 之间的主要区别Python是一种面向对象、解释型计算机程序设计语言。Python 语法简洁、清晰，具有丰富和强大的类库。 Python 提供了一种中间编译结果保存机制，即 byte code，或更准确地说，保存 PyCodeObject。事实上，Python 确实提供了这样一种机制 —— .pyc 文件。在执行一个 .py">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-06T08:41:46.000Z">
-<meta property="article:modified_time" content="2023-04-07T06:42:30.307Z">
+<meta property="article:published_time" content="2023-04-07T06:39:56.000Z">
+<meta property="article:modified_time" content="2023-04-07T06:45:04.804Z">
 <meta property="article:author" content="秦杰">
-<meta property="article:tag" content="Android 逆向">
+<meta property="article:tag" content="CTF逆向">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>安卓逆向技术详解 - </title>
+  <title>python常见文件格式 - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="安卓逆向技术详解"></span>
+            <span id="subtitle" data-typed-text="python常见文件格式"></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-06 16:41" pubdate>
-          星期四, 四月 6日 2023, 4:41 下午
+        <time datetime="2023-04-07 14:39" pubdate>
+          星期五, 四月 7日 2023, 2:39 下午
         </time>
       </span>
     
@@ -227,7 +227,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.5k 字
+          2.1k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
           <!-- compatible with older versions-->
-          13 分钟
+          18 分钟
         
       </span>
     
@@ -277,27 +277,34 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">安卓逆向技术详解</h1>
+            <h1 style="display: none">python常见文件格式</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="安卓逆向技术详解"><a href="#安卓逆向技术详解" class="headerlink" title="安卓逆向技术详解"></a>安卓逆向技术详解</h1><p>安卓逆向技术是一种通过分析和破解应用程序，了解其内部结构和实现方式的技术。它可以用于安全研究、漏洞挖掘、反制侵权行为等多个方面。本文将介绍安卓逆向技术的具体技术和常用工具。</p>
-<h2 id="1-反编译"><a href="#1-反编译" class="headerlink" title="1. 反编译"></a>1. 反编译</h2><p>反编译是安卓逆向技术的基础，它是将编译后的二进制代码重新转换为高级语言的过程。对于安卓应用程序，我们可以使用一些工具将其反编译成Java源代码，然后进行分析和修改。</p>
-<p>常用的反编译工具有apktool、dex2jar、jadx等。这些工具可以将应用程序的.dex文件反编译成Java源代码，方便我们进行分析和修改。</p>
-<h2 id="2-动态调试"><a href="#2-动态调试" class="headerlink" title="2. 动态调试"></a>2. 动态调试</h2><p>动态调试是指在程序运行时，通过监视和修改进程的行为，来理解程序的执行过程和内部结构。在安卓逆向中，我们可以使用动态调试技术来分析应用程序的代码逻辑、变量值、函数调用等信息。</p>
-<p>常用的动态调试工具有Frida、Xposed等。这些工具可以在安卓系统中注入自己的代码，从而拦截应用程序的函数调用，并可以在运行时对其进行修改或添加新的行为。</p>
-<h2 id="3-静态分析"><a href="#3-静态分析" class="headerlink" title="3. 静态分析"></a>3. 静态分析</h2><p>静态分析是指在不运行程序的情况下，通过分析应用程序的源代码或二进制代码，来获取程序的内部结构和执行逻辑。在安卓逆向中，静态分析可以帮助我们深入了解应用程序的代码结构和逻辑，发现潜在的漏洞和安全隐患。</p>
-<p>常用的静态分析工具有IDA Pro、Radare2等。这些工具可以反汇编应用程序的二进制代码，分析应用程序的内部结构和执行逻辑，并提供交互式的反汇编和分析功能。</p>
-<h2 id="4-Hook"><a href="#4-Hook" class="headerlink" title="4. Hook"></a>4. Hook</h2><p>Hook技术是一种在运行时修改应用程序行为的技术，它可以用于对应用程序的函数进行拦截、劫持和重定向。在安卓逆向中，我们可以使用Hook技术来拦截应用程序的函数调用，并改变其返回值或修改其参数值，从而影响应用程序的执行行为。</p>
-<p>常用的Hook工具有Xposed、Substrate等。这些工具可以在运行时对应用程序进行Hook，拦截函数调用并修改其返回值或参数值，从而达到修改应用程序行为的目的。</p>
-<h2 id="5-密码破解"><a href="#5-密码破解" class="headerlink" title="5. 密码破解"></a>5. 密码破解</h2><p>密码破解是指通过一些手段，尝试猜解或破解应用程序中保存的密码，以获取更高的权限或敏感信息。在安卓逆向中，我们可以使用密码破解技术来猜解应用程序中保存的加密密钥或密码，从而获取更多的信息和权限。</p>
-<p>常用的密码破解工具有John the Ripper、Hashcat等。这些工具可以使用字典攻击、暴力破解、彩虹表等方法，尝试猜解应用程序中保存的加密密钥或密码，从而获取更多的信息和权限。</p>
-<h2 id="6-模拟器检测"><a href="#6-模拟器检测" class="headerlink" title="6. 模拟器检测"></a>6. 模拟器检测</h2><p>模拟器检测是指应用程序中使用一些技术手段，判断当前运行环境是否为模拟器环境。在安卓逆向中，我们可以使用模拟器检测技术来绕过应用程序的模拟器检测，使其在模拟器环境下也能正常运行。</p>
-<p>常用的模拟器检测工具有Genymotion、BlueStacks等。这些工具可以模拟安卓系统环境，使我们可以在模拟器环境下运行应用程序，并绕过应用程序的模拟器检测。</p>
-<h2 id="7-反调试"><a href="#7-反调试" class="headerlink" title="7. 反调试"></a>7. 反调试</h2><p>反调试是指应用程序中使用一些技术手段，防止被逆向分析或调试。在安卓逆向中，我们可以使用反调试技术来绕过应用程序的反调试机制，使其在被逆向分析或调试时仍然能够正常运行。</p>
-<p>常用的反调试工具有Frida、Xposed等。这些工具可以在运行时对应用程序进行Hook，绕过其反调试机制，使其在被逆向分析或调试时仍然能够正常运行。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>安卓逆向技术是一项强大的技能，可以帮助我们更深入地了解应用程序的内部结构和执行逻辑。然而，在进行逆向分析时需要遵守法律法规和道德规范，以及保护用户隐私和知识产权。同时，也需要注意应用程序可能使用的加密和混淆技术，选择适当的工具进行破解。</p>
+                <h1 id="Python-常见文件格式-py-pyc-pyw-pyo-pyd-之间的主要区别"><a href="#Python-常见文件格式-py-pyc-pyw-pyo-pyd-之间的主要区别" class="headerlink" title="Python 常见文件格式 .py .pyc .pyw .pyo .pyd 之间的主要区别"></a><strong>Python 常见文件格式 .py .pyc .pyw .pyo .pyd 之间的主要区别</strong></h1><p>Python是一种面向对象、解释型计算机程序设计语言。Python 语法简洁、清晰，具有丰富和强大的类库。</p>
+<p>Python 提供了一种中间编译结果保存机制，即 byte code，或更准确地说，保存 PyCodeObject。事实上，Python 确实提供了这样一种机制 —— .pyc 文件。在执行一个 .py 文件的源代码之后，Python 并不会自动生成与该 .py 文件对应的 .pyc 文件。Python 会根据需要自动触发、创建 .pyc 文件，原理很简单，就是利用 Python 的 import 机制。</p>
+<p>在 Python 运行过程中如碰到 import abc 这样的语句，Python 将会在设定好的 path 中寻找 abc.pyc 或 abc.dll 文件。若没有这样的文件，而只是发现了 abc.py 文件，那么，Python 会首先将 abc.py 编译成相应的 PyCodeObject 中间结果，然后再创建 abc.pyc 文件，并将中间结果写入该文件。接下来，Python 才会对 abc.pyc 文件进行一个 import 动作，实际上也就是将 abc.pyc 文件中的 PyCodeObject 重新在内存中复制出来，加以运行。</p>
+<p>由于 Python .pyc 文件的此种运行机制，所以，可随时删除所有中间过程 .pyc 文件，当 Python 再次运行时，还会重生成这些 .pyc 文件，对您所编辑程序的运行并无任何影响。当然，得有源代码才行。</p>
+<p>视窗用 python.exe 运行 .py ，用 pythonw.exe 运行 .pyw。因为安装视窗版 Python 时，扩展名 .py 自动被登记为用 python.exe 运行， 而 .pyw 则被登记为用 pythonw.exe 运行。</p>
+<p>智能编辑重构 批处理式 <strong>数字 Python IDE</strong> 集成开发环境 (集成高效 Cython PyInstaller 批处理小程序)</p>
+<p><a target="_blank" rel="noopener" href="http://dt.digitser.cn/zh-CN/ide/idepy/index.html">http://dt.digitser.cn/zh-CN/ide/idepy/index.html</a></p>
+<h2 id="py-文件"><a href="#py-文件" class="headerlink" title=".py 文件"></a><strong>.py 文件</strong></h2><p>以 .py 作扩展名的文件是 Python 源代码文件，由 python.exe 解释，可在控制台下运行。</p>
+<p>当然，也可用文本编辑器或其它专用 Python IDE (集成开发环境) 工具进行修改。</p>
+<h2 id="pyc-文件"><a href="#pyc-文件" class="headerlink" title=".pyc 文件"></a><strong>.pyc 文件</strong></h2><p>以 .pyc 作扩展名的文件是 python 编译文件。.pyc 文件是不能直接用文本编辑器进行编辑，其优点是 .pyc 文件的执行速度要远快于 .py 文件。</p>
+<p>至于为什么要有 .pyc 文件，因为 .py 文件是可直接看到源码的。若是软件开发商，不可能把源码泄漏出去？所以，就需编译成 .pyc 后再发布。</p>
+<p>但 .pyc 文件只是经简单编译，并未加密，因此，有些工具还能反编译它得出源代码。</p>
+<h2 id="pyw-文件"><a href="#pyw-文件" class="headerlink" title=".pyw 文件"></a><strong>.pyw 文件</strong></h2><p>.pyc 文件执行时，桌面会出现类似 CMD 命令的黑色 shell 窗口，十分难看，于是 .pyw 文件就应运而生了。.pyw 文件与 .pyc 文件的执行，本质上并没什么区别，只是 .pyw 文件执行的时候不会出现类似 CMD 命令的黑色 shell 窗口。</p>
+<p>.pyw 文件格式主要是设计用来运行 Python 纯 GUI (图形用户界面) 程序的。纯 GUI (图形用户界面) 程序的用户不需要看到类似 CMD 命令的黑色 shell 控制台窗口。当 .pyw 文件运行时，所有 stdout、stderr 输出无效，所有原 stdin 的读取只会得到 EOF。</p>
+<p>值得一提的是，开发纯 GUI (图形用户界面) 程序时，可暂时把 .pyw 改成 .py，以便运行时调出控制台窗口，看到所有错误信息，方便修改、调试。</p>
+<p>注意：采用 PyQt、PySide 等 GUI (图形用户界面) 开发框架开发的程序，源文件仍可采用 .py，无需单独使用 .pyw。</p>
+<h2 id="pyo-文件"><a href="#pyo-文件" class="headerlink" title=".pyo 文件"></a><strong>.pyo 文件</strong></h2><p>“python -O 源文件” 即可将 Python 源程序编译成 .pyo 文件，但有时仍得采用 .pyc 作后缀，才能正常运行。</p>
+<p>.pyo 文件是相对 .pyc 而言的，优化编译后的 Python 文件。 同样，.pyo 文件也不能直接用文本编辑器进行编辑。</p>
+<p>通过数字 IDE 控制台选项卡集成的 python -O -m compileall -l .&#x2F; 命令能把当前目录下的所有 .py 编译成 .pyo 文件，不带 -l 参数可递归进子目录。</p>
+<h2 id="pyd-文件"><a href="#pyd-文件" class="headerlink" title="pyd 文件"></a><strong>pyd 文件</strong></h2><p>.pyd 文件是由非 Python，其它编程语言编写 (或直接把 .py 文件转换成 .c 中间文件) 编译生成的 Python 扩展模块，是类似 .so .dll 动态链接库的一种 Python 文件。</p>
+<p>每个 .pyd 文件实际上都封装了一个 Python module 模块。使用时，采用 import 路径名.modulename 或 from 路径名.modulename import ** 语言，路径名为 .pyd 文件所在的路径。</p>
+<p>基于 Qt&#x2F;C++ 的 PyQt PySide GUI (图形用户界面) 开发框架绑定，会为每个二次开发胶水代码所对应的 Qt&#x2F;C++ 库 .dll 文件生成一个中间 .pyd 文件。PyWin32 项目分发包中，也存在很多 MicroSoft Windows OS 相应 .dll 文件的中间 .pyd 文件。</p>
+<p>Cython 可将个人基于 Python 语言编写的 Python 模块编译成具有 C 语言特性的 .pyd 文件。</p>
 
                 
               </div>
@@ -316,7 +323,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Android%E9%80%86%E5%90%91%E7%9F%A5%E8%AF%86/" class="category-chain-item">Android逆向知识</a>
+  <a href="/categories/CTF%E9%80%86%E5%90%91%E7%9F%A5%E8%AF%86/" class="category-chain-item">CTF逆向知识</a>
   
   
 
@@ -331,7 +338,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Android-%E9%80%86%E5%90%91/">#Android 逆向</a>
+        <a href="/tags/CTF%E9%80%86%E5%90%91/">#CTF逆向</a>
       
     </div>
   
@@ -343,8 +350,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>安卓逆向技术详解</div>
-      <div>http://example.com/2023/04/06/安卓逆向技术详解/</div>
+      <div>python常见文件格式</div>
+      <div>http://example.com/2023/04/07/python常见文件格式/</div>
     </div>
     <div class="license-meta">
       
@@ -356,7 +363,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月6日</div>
+          <div>2023年4月7日</div>
         </div>
       
       
@@ -388,9 +395,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/07/python%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="python常见文件格式">
+                      <a href="/2023/04/07/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" title="加密算法">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">python常见文件格式</span>
+                        <span class="hidden-mobile">加密算法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -398,8 +405,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/06/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E6%8A%80%E6%9C%AF/" title="安卓逆向技术">
-                        <span class="hidden-mobile">安卓逆向技术</span>
+                      <a href="/2023/04/06/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/" title="安卓逆向技术详解">
+                        <span class="hidden-mobile">安卓逆向技术详解</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

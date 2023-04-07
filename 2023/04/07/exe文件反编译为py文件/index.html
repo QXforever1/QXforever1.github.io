@@ -18,22 +18,26 @@
   <meta name="author" content="秦杰">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安卓逆向技术详解安卓逆向技术是一种通过分析和破解应用程序，了解其内部结构和实现方式的技术。它可以用于安全研究、漏洞挖掘、反制侵权行为等多个方面。本文将介绍安卓逆向技术的具体技术和常用工具。 1. 反编译反编译是安卓逆向技术的基础，它是将编译后的二进制代码重新转换为高级语言的过程。对于安卓应用程序，我们可以使用一些工具将其反编译成Java源代码，然后进行分析和修改。 常用的反编译工具有apktool">
+    <meta name="description" content="典型exe文件反编译为py文件拿到附件发现是一个exe文件但是根据题目提示这应该是一个py文件，所以我们需要将该exe文件反编译为py文件进行解题。 解题步骤为：exe文件-&gt;pyc文件-&gt;py文件exe文件-&gt;pyc文件首先将exe文件复制到python-exe-unpacker-master的文件目录中，然后在该目录中打开命令提示符， 输入命令pyinstxtractor.p">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安卓逆向技术详解">
-<meta property="og:url" content="http://example.com/2023/04/06/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:title" content="exe文件反编译为py文件">
+<meta property="og:url" content="http://example.com/2023/04/07/exe%E6%96%87%E4%BB%B6%E5%8F%8D%E7%BC%96%E8%AF%91%E4%B8%BApy%E6%96%87%E4%BB%B6/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="安卓逆向技术详解安卓逆向技术是一种通过分析和破解应用程序，了解其内部结构和实现方式的技术。它可以用于安全研究、漏洞挖掘、反制侵权行为等多个方面。本文将介绍安卓逆向技术的具体技术和常用工具。 1. 反编译反编译是安卓逆向技术的基础，它是将编译后的二进制代码重新转换为高级语言的过程。对于安卓应用程序，我们可以使用一些工具将其反编译成Java源代码，然后进行分析和修改。 常用的反编译工具有apktool">
+<meta property="og:description" content="典型exe文件反编译为py文件拿到附件发现是一个exe文件但是根据题目提示这应该是一个py文件，所以我们需要将该exe文件反编译为py文件进行解题。 解题步骤为：exe文件-&gt;pyc文件-&gt;py文件exe文件-&gt;pyc文件首先将exe文件复制到python-exe-unpacker-master的文件目录中，然后在该目录中打开命令提示符， 输入命令pyinstxtractor.p">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-06T08:41:46.000Z">
-<meta property="article:modified_time" content="2023-04-07T06:42:30.307Z">
+<meta property="og:image" content="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304071446918.png">
+<meta property="og:image" content="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304071446930.png">
+<meta property="og:image" content="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304071446937.png">
+<meta property="article:published_time" content="2023-04-07T06:46:05.000Z">
+<meta property="article:modified_time" content="2023-04-07T06:46:51.055Z">
 <meta property="article:author" content="秦杰">
-<meta property="article:tag" content="Android 逆向">
+<meta property="article:tag" content="CTF逆向">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304071446918.png">
   
   
   
-  <title>安卓逆向技术详解 - </title>
+  <title>exe文件反编译为py文件 - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +207,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="安卓逆向技术详解"></span>
+            <span id="subtitle" data-typed-text="exe文件反编译为py文件"></span>
           
         </div>
 
@@ -214,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-06 16:41" pubdate>
-          星期四, 四月 6日 2023, 4:41 下午
+        <time datetime="2023-04-07 14:46" pubdate>
+          星期五, 四月 7日 2023, 2:46 下午
         </time>
       </span>
     
@@ -227,7 +231,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.5k 字
+          431 字
         
       </span>
     
@@ -239,7 +243,7 @@
         
         
           <!-- compatible with older versions-->
-          13 分钟
+          4 分钟
         
       </span>
     
@@ -277,27 +281,19 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">安卓逆向技术详解</h1>
+            <h1 style="display: none">exe文件反编译为py文件</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="安卓逆向技术详解"><a href="#安卓逆向技术详解" class="headerlink" title="安卓逆向技术详解"></a>安卓逆向技术详解</h1><p>安卓逆向技术是一种通过分析和破解应用程序，了解其内部结构和实现方式的技术。它可以用于安全研究、漏洞挖掘、反制侵权行为等多个方面。本文将介绍安卓逆向技术的具体技术和常用工具。</p>
-<h2 id="1-反编译"><a href="#1-反编译" class="headerlink" title="1. 反编译"></a>1. 反编译</h2><p>反编译是安卓逆向技术的基础，它是将编译后的二进制代码重新转换为高级语言的过程。对于安卓应用程序，我们可以使用一些工具将其反编译成Java源代码，然后进行分析和修改。</p>
-<p>常用的反编译工具有apktool、dex2jar、jadx等。这些工具可以将应用程序的.dex文件反编译成Java源代码，方便我们进行分析和修改。</p>
-<h2 id="2-动态调试"><a href="#2-动态调试" class="headerlink" title="2. 动态调试"></a>2. 动态调试</h2><p>动态调试是指在程序运行时，通过监视和修改进程的行为，来理解程序的执行过程和内部结构。在安卓逆向中，我们可以使用动态调试技术来分析应用程序的代码逻辑、变量值、函数调用等信息。</p>
-<p>常用的动态调试工具有Frida、Xposed等。这些工具可以在安卓系统中注入自己的代码，从而拦截应用程序的函数调用，并可以在运行时对其进行修改或添加新的行为。</p>
-<h2 id="3-静态分析"><a href="#3-静态分析" class="headerlink" title="3. 静态分析"></a>3. 静态分析</h2><p>静态分析是指在不运行程序的情况下，通过分析应用程序的源代码或二进制代码，来获取程序的内部结构和执行逻辑。在安卓逆向中，静态分析可以帮助我们深入了解应用程序的代码结构和逻辑，发现潜在的漏洞和安全隐患。</p>
-<p>常用的静态分析工具有IDA Pro、Radare2等。这些工具可以反汇编应用程序的二进制代码，分析应用程序的内部结构和执行逻辑，并提供交互式的反汇编和分析功能。</p>
-<h2 id="4-Hook"><a href="#4-Hook" class="headerlink" title="4. Hook"></a>4. Hook</h2><p>Hook技术是一种在运行时修改应用程序行为的技术，它可以用于对应用程序的函数进行拦截、劫持和重定向。在安卓逆向中，我们可以使用Hook技术来拦截应用程序的函数调用，并改变其返回值或修改其参数值，从而影响应用程序的执行行为。</p>
-<p>常用的Hook工具有Xposed、Substrate等。这些工具可以在运行时对应用程序进行Hook，拦截函数调用并修改其返回值或参数值，从而达到修改应用程序行为的目的。</p>
-<h2 id="5-密码破解"><a href="#5-密码破解" class="headerlink" title="5. 密码破解"></a>5. 密码破解</h2><p>密码破解是指通过一些手段，尝试猜解或破解应用程序中保存的密码，以获取更高的权限或敏感信息。在安卓逆向中，我们可以使用密码破解技术来猜解应用程序中保存的加密密钥或密码，从而获取更多的信息和权限。</p>
-<p>常用的密码破解工具有John the Ripper、Hashcat等。这些工具可以使用字典攻击、暴力破解、彩虹表等方法，尝试猜解应用程序中保存的加密密钥或密码，从而获取更多的信息和权限。</p>
-<h2 id="6-模拟器检测"><a href="#6-模拟器检测" class="headerlink" title="6. 模拟器检测"></a>6. 模拟器检测</h2><p>模拟器检测是指应用程序中使用一些技术手段，判断当前运行环境是否为模拟器环境。在安卓逆向中，我们可以使用模拟器检测技术来绕过应用程序的模拟器检测，使其在模拟器环境下也能正常运行。</p>
-<p>常用的模拟器检测工具有Genymotion、BlueStacks等。这些工具可以模拟安卓系统环境，使我们可以在模拟器环境下运行应用程序，并绕过应用程序的模拟器检测。</p>
-<h2 id="7-反调试"><a href="#7-反调试" class="headerlink" title="7. 反调试"></a>7. 反调试</h2><p>反调试是指应用程序中使用一些技术手段，防止被逆向分析或调试。在安卓逆向中，我们可以使用反调试技术来绕过应用程序的反调试机制，使其在被逆向分析或调试时仍然能够正常运行。</p>
-<p>常用的反调试工具有Frida、Xposed等。这些工具可以在运行时对应用程序进行Hook，绕过其反调试机制，使其在被逆向分析或调试时仍然能够正常运行。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>安卓逆向技术是一项强大的技能，可以帮助我们更深入地了解应用程序的内部结构和执行逻辑。然而，在进行逆向分析时需要遵守法律法规和道德规范，以及保护用户隐私和知识产权。同时，也需要注意应用程序可能使用的加密和混淆技术，选择适当的工具进行破解。</p>
+                <h1 id="典型exe文件反编译为py文件"><a href="#典型exe文件反编译为py文件" class="headerlink" title="典型exe文件反编译为py文件"></a>典型exe文件反编译为py文件</h1><p>拿到附件发现是一个exe文件但是根据题目提示这应该是一个py文件，所以我们需要将该exe文件反编译为py文件进行解题。</p>
+<h2 id="解题步骤为：exe文件-gt-pyc文件-gt-py文件"><a href="#解题步骤为：exe文件-gt-pyc文件-gt-py文件" class="headerlink" title="解题步骤为：exe文件-&gt;pyc文件-&gt;py文件"></a>解题步骤为：exe文件-&gt;pyc文件-&gt;py文件</h2><h3 id="exe文件-gt-pyc文件"><a href="#exe文件-gt-pyc文件" class="headerlink" title="exe文件-&gt;pyc文件"></a>exe文件-&gt;pyc文件</h3><p>首先将exe文件复制到python-exe-unpacker-master的文件目录中，然后在该目录中打开命令提示符，</p>
+<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304071446918.png" srcset="/img/loading1.gif" lazyload alt="image-20221020142451980">输入命令pyinstxtractor.py ＋文件名，接着会输出一个文件夹（ 文件名称_extracted），进入该文件夹下拉找到与文件名称相同的文件和一个名为struct的文件，放入010editor中分析。</p>
+<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304071446930.png" srcset="/img/loading1.gif" lazyload alt="image-20221020142822575"></p>
+<p><img src="https://picture-1317599851.cos.ap-beijing.myqcloud.com/undefined202304071446937.png" srcset="/img/loading1.gif" lazyload alt="image-20221020142836181"></p>
+<p>发现两个文件文件头不同的是struct文件在E3前多了一些十六进制数字，然后新建十六进制文件，先将多出来的十六进制数复制过去再将原文件全部复制过去，重命名为pyc文件</p>
+<h3 id="pyc文件-gt-py文件"><a href="#pyc文件-gt-py文件" class="headerlink" title="pyc文件-&gt;py文件"></a>pyc文件-&gt;py文件</h3><p>使用反编译工具uncompyle6 </p>
+<p>在命令提示符中使用命令 uncompyle6 -o 文件名.py 文件名.pyc</p>
 
                 
               </div>
@@ -316,7 +312,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Android%E9%80%86%E5%90%91%E7%9F%A5%E8%AF%86/" class="category-chain-item">Android逆向知识</a>
+  <a href="/categories/CTF%E9%80%86%E5%90%91%E7%9F%A5%E8%AF%86/" class="category-chain-item">CTF逆向知识</a>
   
   
 
@@ -331,7 +327,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Android-%E9%80%86%E5%90%91/">#Android 逆向</a>
+        <a href="/tags/CTF%E9%80%86%E5%90%91/">#CTF逆向</a>
       
     </div>
   
@@ -343,8 +339,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>安卓逆向技术详解</div>
-      <div>http://example.com/2023/04/06/安卓逆向技术详解/</div>
+      <div>exe文件反编译为py文件</div>
+      <div>http://example.com/2023/04/07/exe文件反编译为py文件/</div>
     </div>
     <div class="license-meta">
       
@@ -356,7 +352,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年4月6日</div>
+          <div>2023年4月7日</div>
         </div>
       
       
@@ -388,9 +384,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/07/python%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="python常见文件格式">
+                      <a href="/2023/04/07/%E6%B1%87%E7%BC%96/" title="汇编">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">python常见文件格式</span>
+                        <span class="hidden-mobile">汇编</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -398,8 +394,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/06/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E6%8A%80%E6%9C%AF/" title="安卓逆向技术">
-                        <span class="hidden-mobile">安卓逆向技术</span>
+                      <a href="/2023/04/07/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" title="加密算法">
+                        <span class="hidden-mobile">加密算法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
