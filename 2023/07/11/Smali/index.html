@@ -1,0 +1,780 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/tags.png">
+  <link rel="icon" href="/img/tags.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#eea2a4">
+  <meta name="author" content="秦杰">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Android Smali语法深入smali文件结构下面的代码是通过apktool反编译.apk文件获取的，在这里先对smli语法格式进行介绍 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960.class public abs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Smali">
+<meta property="og:url" content="http://example.com/2023/07/11/Smali/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="Android Smali语法深入smali文件结构下面的代码是通过apktool反编译.apk文件获取的，在这里先对smli语法格式进行介绍 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960.class public abs">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-07-11T04:51:00.000Z">
+<meta property="article:modified_time" content="2023-07-11T04:52:24.009Z">
+<meta property="article:author" content="秦杰">
+<meta property="article:tag" content="Android 逆向">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Android Smali - </title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":"ture","scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading1.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小秦的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/DM_20230402135915_001.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Android Smali"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-11 12:51" pubdate>
+          星期二, 七月 11日 2023, 12:51 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          9.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          83 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Android Smali</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Android-Smali语法深入"><a href="#Android-Smali语法深入" class="headerlink" title="Android Smali语法深入"></a>Android Smali语法深入</h1><h2 id="smali文件结构"><a href="#smali文件结构" class="headerlink" title="smali文件结构"></a>smali文件结构</h2><p>下面的代码是通过apktool反编译.apk文件获取的，在这里先对smli语法格式进行介绍</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs smali"><span class="hljs-keyword">.class</span><span class="hljs-keyword"> public</span><span class="hljs-keyword"> abstract</span> <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity;</span><br><span class="hljs-keyword">.super</span> <span class="hljs-class">Landroidx/appcompat/app/AppCompatActivity;</span><br><span class="hljs-keyword">.source</span> <span class="hljs-string">&quot;BaseActivity.kt&quot;</span><br> <br><span class="hljs-comment"># interfaces</span><br><span class="hljs-keyword">.implements</span> <span class="hljs-class">Lcom/happy/learnsmali/action/ActivityAction;</span><br><span class="hljs-keyword">.implements</span> <span class="hljs-class">Lcom/happy/learnsmali/action/ClickAction;</span><br><span class="hljs-keyword">.implements</span> <span class="hljs-class">Lcom/happy/learnsmali/action/HandlerAction;</span><br><span class="hljs-keyword">.implements</span> <span class="hljs-class">Lcom/happy/learnsmali/action/BundleAction;</span><br><span class="hljs-keyword">.implements</span> <span class="hljs-class">Lcom/happy/learnsmali/action/KeyboardAction;</span><br> <br> <br><span class="hljs-comment"># annotations</span><br><span class="hljs-keyword">.annotation</span><span class="hljs-keyword"> system</span> <span class="hljs-class">Ldalvik/annotation/MemberClasses;</span><br>    value = &#123;<br>        <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity$Companion;</span>,<br>        <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity$OnActivityCallback;</span><br>    &#125;<span class="hljs-keyword"></span><br><span class="hljs-keyword">.end annotation</span><br> <br><span class="hljs-keyword">.annotation</span><span class="hljs-keyword"> system</span> <span class="hljs-class">Ldalvik/annotation/SourceDebugExtension;</span><br>    value = <span class="hljs-string">&quot;SMAP\nBaseActivity.kt\nKotlin\n*S Kotlin\n*F\n+ 1 BaseActivity.kt\ncom/happy/learnsmali/BaseActivity\n+ 2 fake.kt\nkotlin/jvm/internal/FakeKt\n*L\n1#1,179:1\n1#2:180\n*E\n&quot;</span><span class="hljs-keyword"></span><br><span class="hljs-keyword">.end annotation</span><br> <br><span class="hljs-comment"># static fields</span><br><span class="hljs-keyword">.field</span><span class="hljs-keyword"> public</span><span class="hljs-keyword"> static</span><span class="hljs-keyword"> final</span> Companion:<span class="hljs-class">Lcom/happy/learnsmali/BaseActivity$Companion;</span><br> <br><span class="hljs-keyword">.field</span><span class="hljs-keyword"> public</span><span class="hljs-keyword"> static</span><span class="hljs-keyword"> final</span> RESULT_ERROR:I = -0x2<br> <br> <br><span class="hljs-comment"># instance fields</span><br><span class="hljs-keyword">.field</span><span class="hljs-keyword"> private</span><span class="hljs-keyword"> final</span> activityCallbacks$delegate:<span class="hljs-class">Lkotlin/Lazy;</span><br> <br> <br><span class="hljs-comment"># direct methods</span><br><span class="hljs-keyword">.method</span><span class="hljs-keyword"> public</span><span class="hljs-keyword"> static</span><span class="hljs-keyword"> synthetic</span> $r8$lambda$mAxgPA6JBXhjuhBfNvUeqmKUmlk(<span class="hljs-class">Lcom/happy/learnsmali/BaseActivity;</span><span class="hljs-class">Landroid/view/View;</span>)V<br><span class="hljs-keyword">    .locals</span> 0<br> <br>   <span class="hljs-built_in"> invoke-static </span>&#123;p0, p1&#125;, <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity;</span>-&gt;initSoftKeyboard$lambda-0(<span class="hljs-class">Lcom/happy/learnsmali/BaseActivity;</span><span class="hljs-class">Landroid/view/View;</span>)V<br> <br>   <span class="hljs-built_in"> return-void</span><br><span class="hljs-built_in"></span><span class="hljs-keyword">.end method</span><br> <br><span class="hljs-keyword">.method</span><span class="hljs-keyword"> static</span><span class="hljs-keyword"> constructor</span> &lt;clinit&gt;()V<br><span class="hljs-keyword">    .locals</span> 2<br> <br>   <span class="hljs-built_in"> new-instance </span>v0, <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity$Companion;</span><br> <br>   <span class="hljs-built_in"> const/4 </span>v1, 0x0<br> <br>   <span class="hljs-built_in"> invoke-direct </span>&#123;v0, v1&#125;, <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity$Companion;</span>-&gt;&lt;init&gt;(<span class="hljs-class">Lkotlin/jvm/internal/DefaultConstructorMarker;</span>)V<br> <br>   <span class="hljs-built_in"> sput-object </span>v0, <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity;</span>-&gt;Companion:<span class="hljs-class">Lcom/happy/learnsmali/BaseActivity$Companion;</span><br> <br>   <span class="hljs-built_in"> return-void</span><br><span class="hljs-built_in"></span><span class="hljs-keyword">.end method</span><br> <br><span class="hljs-keyword">.method</span><span class="hljs-keyword"> public</span><span class="hljs-keyword"> constructor</span> &lt;init&gt;()V<br>    // ...<span class="hljs-keyword"></span><br><span class="hljs-keyword">.end method</span><br></code></pre></td></tr></table></figure>
+
+<p>用以上代码作为演示</p>
+<h2 id="smali中的继承、接口、包信息"><a href="#smali中的继承、接口、包信息" class="headerlink" title="smali中的继承、接口、包信息"></a>smali中的继承、接口、包信息</h2><p>先分析前几行代码：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs smali"><span class="hljs-keyword">.class</span><span class="hljs-keyword"> public</span><span class="hljs-keyword"> abstract</span> <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity;</span> // .class 表示类路径 包名+类名<br><span class="hljs-keyword">.super</span> <span class="hljs-class">Landroidx/appcompat/app/AppCompatActivity;</span>           // .super 表示父类的路径<br><span class="hljs-keyword">.source</span> <span class="hljs-string">&quot;BaseActivity.kt&quot;</span>                                   // 表示源码文件名<br> <br><span class="hljs-comment"># interfaces</span><br><span class="hljs-keyword">.implements</span> <span class="hljs-class">Lcom/happy/learnsmali/action/ActivityAction;</span><br><span class="hljs-keyword">.implements</span> <span class="hljs-class">Lcom/happy/learnsmali/action/ClickAction;</span><br><span class="hljs-keyword">.implements</span> <span class="hljs-class">Lcom/happy/learnsmali/action/HandlerAction;</span><br><span class="hljs-keyword">.implements</span> <span class="hljs-class">Lcom/happy/learnsmali/action/BundleAction;</span><br><span class="hljs-keyword">.implements</span> <span class="hljs-class">Lcom/happy/learnsmali/action/KeyboardAction;</span><br> <br> <br><span class="hljs-comment"># annotations</span><br><span class="hljs-keyword">.annotation</span><span class="hljs-keyword"> system</span> <span class="hljs-class">Ldalvik/annotation/MemberClasses;</span><br>    value = &#123;<br>        <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity$Companion;</span>,<br>        <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity$OnActivityCallback;</span><br>    &#125;<span class="hljs-keyword"></span><br><span class="hljs-keyword">.end annotation</span><br></code></pre></td></tr></table></figure>
+
+<p>1-3行定义基本信息：</p>
+<p>表示由源文件BaseActivity.kt反编译得到的smali文件（第三行），文件路径位于 com&#x2F;happy&#x2F;learnsmali&#x2F;（第二行），继承于 androidx&#x2F;appcompat&#x2F;app&#x2F;AppCompatActivity（第三行）。</p>
+<p>5-9行定义接口信息：表示 BaseActivity 类实现的接口类有：</p>
+<ul>
+<li>com&#x2F;happy&#x2F;learnsmali&#x2F;action&#x2F;ActivityAction</li>
+<li>com&#x2F;happy&#x2F;learnsmali&#x2F;action&#x2F;ClickAction</li>
+<li>com&#x2F;happy&#x2F;learnsmali&#x2F;action&#x2F;HandlerAction</li>
+<li>com&#x2F;happy&#x2F;learnsmali&#x2F;action&#x2F;BundleAction</li>
+<li>com&#x2F;happy&#x2F;learnsmali&#x2F;action&#x2F;KeyboardAction</li>
+</ul>
+<p>11-16行定义内部类：表示 BaseActivity 类有两个内部类 – Companion 和 OnActivityCallback。</p>
+<p>构造出java代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BaseActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span><br>    <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ActivityAction</span>, ClickAction, HandlerAction, BundleAction, KeyboardAction &#123;<br> <br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Companion</span> &#123;<br>        <span class="hljs-comment">// ...</span><br>    &#125;<br> <br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">OnActivityCallback</span> &#123;<br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>其他方法</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs smali"><span class="hljs-comment"># virtual methods   //Representation is a virtual method</span><br><span class="hljs-keyword">.method</span><span class="hljs-keyword"> protected</span> onCreate(<span class="hljs-class">Landroid/os/Bundle;</span>)V<br><span class="hljs-keyword">    .locals</span> 1<br><span class="hljs-keyword">    .param</span> p1, <span class="hljs-string">&quot;savedInstanceState&quot;</span>    <span class="hljs-comment"># Landroid/os/Bundle;</span><br> <br><span class="hljs-keyword">    .line</span> 10<br>   <span class="hljs-built_in"> invoke-super </span>&#123;p0, p1&#125;, <span class="hljs-class">Landroid/app/Activity;</span>-&gt;onCreate(<span class="hljs-class">Landroid/os/Bundle;</span>)V<br> <br><span class="hljs-keyword">    .line</span> 11<br>   <span class="hljs-built_in"> const/high16 </span>v0, 0x7f050000<br> <br>   <span class="hljs-built_in"> invoke-virtual </span>&#123;p0, v0&#125;, <span class="hljs-class">Lcom/justart/samlidemo/MainActivity;</span>-&gt;setContentView(I)V<br> <br><span class="hljs-keyword">    .line</span> 12<br>   <span class="hljs-built_in"> return-void</span><br><span class="hljs-built_in"></span><span class="hljs-keyword">.end method</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>方法以 .method 开始，以 .end method 结束；</li>
+<li>位于第一行的最后 V 表示返回类型为 void；</li>
+<li>方法参数 Landroid&#x2F;os&#x2F;Bundle; 表示方法 onCreate() 的参数为 Bundle 类型；</li>
+<li>. param 表示方法的参数名称为 savedInstanceState;</li>
+<li>最后 return-void 表示返回的值类型为 void；</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
+<li>byte：B</li>
+<li>char：C</li>
+<li>double：D</li>
+<li>float：F</li>
+<li>int：I</li>
+<li>long：J</li>
+<li>short：S</li>
+<li>void：V</li>
+<li>boolean：Z</li>
+<li>array：[XXX</li>
+<li>Object：Lxxx&#x2F;yyy</li>
+</ul>
+<p>相信有 JNI 基础会对上面的数据类型好明白，这里解析上面的最后两项：</p>
+<p>array：[XXX</p>
+<p>在基础类型前加 [ 表示数组类型，例如 int 数组和 byte 数组为 [I、[B。</p>
+<p>Object：Lxxx&#x2F;yyy</p>
+<p>以 L 开头的类型表示为对象，如 String 对象对应表示为 Ljava&#x2F;lang&#x2F;String; (对象类型需要后面跟分号)，其中 java&#x2F;lang 表示 java.lang 包，String 表示该包路径下的一个对象。</p>
+<p>这里可能会有童鞋有疑惑，如果类是使用 Ljava&#x2F;lang&#x2F;String; 来表示，那么内部类又应该在 smali 中如何定义呢？可能使用过 Java 反射的童鞋脑海里面闪过 $ 符号。是的，在 smali 语法中同样是使用 Ljava&#x2F;lang&#x2F;String$xxx; 来表示 xxx 是 String 类的内部类。</p>
+<h2 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h2><p>Dalvik VM与JVM最大的区别之一就是Dalvik VM是基于寄存器的。基于寄存器有点类似于汇编语言，通过寄存器来存储数据、传递数据。在smali中本地寄存器用v开头的字母+数字来表示，如v0、v1、v2……，而参数寄存器则使用p开头+数字来表示，如p1、p2、p3……需要注意的是，p0参数寄存器不一定是表示第一个参数，在非static函数中，p0表示this，p1则表示第一个参数，p2表示函数中的第二个参数。而在static函数中p0则对应第一个参数（因为Java的static方法没有对象的概念）。本地寄存器没有限制，理论上是可以任意使用的。</p>
+<h2 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs smali"><span class="hljs-comment"># static field</span><br><span class="hljs-keyword">.field</span><span class="hljs-keyword"> private</span><span class="hljs-keyword"> static</span><span class="hljs-keyword"> final</span> PREFS_INSTALLATION_ID:<span class="hljs-class">Ljava/lang/String;</span> = <span class="hljs-string">&quot;installationId&quot;</span><br>//...<br> <br><span class="hljs-comment"># instance field</span><br><span class="hljs-keyword">.field</span><span class="hljs-keyword"> private</span> _activityPackageName:<span class="hljs-class">Ljava/lang/String;</span><br></code></pre></td></tr></table></figure>
+
+<p>上面所定义的static field和instance field 均为成员变量，格式是：</p>
+<p>.field pubilc&#x2F;private [static] [final] varName:&lt;类型&gt;</p>
+<p>static field和instance field 虽然均为成员变量，但它们还是存在区别。最明显的区别就是是否与对象相关，static field 是类层面的概念，而instance field 是对象层面的概念。</p>
+<p>出现成员变量就意味着有变量的赋值与取值。在smali语法中，取值指令有：iget、sget、iget-boolean、sget-boolean、iget-object、sget-object等，而赋值指令有：iput、sput、iput-boolean、sput-boolean、iput-object、sput-object等。</p>
+<ul>
+<li>iget &#x2F; iput 分别表示instance field成员变量的取值和赋值；</li>
+<li>sget &#x2F; sput 分别表示static field 成员变量的取值和赋值；</li>
+<li>是否为instance field 还是static field 成员的取值和赋值指令，根据指令前缀判断即可。</li>
+<li>带 -object 后缀表示操作的是成员变量是对象类型，而不带后缀则表示操作是基本数据类型。特别地，boolean基本数据类型使用-boolean后缀。</li>
+</ul>
+<p>实例：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs smali">const/4 v0, 0x0 <span class="hljs-built_in"></span><br><span class="hljs-built_in">iput-boolean </span>v0, p0, <span class="hljs-class">Lcom/disney/xx/XxActivity;</span>-&gt;isRunning:Z<br></code></pre></td></tr></table></figure>
+
+<p>上述例子中使用了v0本地寄存器，并且把0x0传递到v0本地寄存器，第二局使用iput-boolean指令把v0寄存器中的值传递到com.disney.xx.XxActivity的成员变量isRunning。即相当于：this.isRunning &#x3D; false;（上面提到，在非static函数中p0表示为this，在这里则表示为com.disney.xx.XxActivity的对象实例）。</p>
+<h3 id="static-field-成员变量"><a href="#static-field-成员变量" class="headerlink" title="static field 成员变量"></a>static field 成员变量</h3><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs smali">sget-objectv0,<span class="hljs-class">Lcom/disney/xx/XxActivity;</span>&gt;PREFS_INSTALLATION_ID:<span class="hljs-class">Ljava/lang/String;</span><br></code></pre></td></tr></table></figure>
+
+<p>操作指令sget-object是用来获取静态成员变量并保存在紧接的本地参数列表中。在这里，把位于com.disney.xx.XxActivity类中的静态成员 PREFS_INSTALLATION_ID的值传递给本地寄存器v0。</p>
+<h3 id="instance-field-成员变量"><a href="#instance-field-成员变量" class="headerlink" title="instance field 成员变量"></a>instance field 成员变量</h3><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs smali">iget-object v0, p0, <span class="hljs-class">Lcom/disney/xx/XxActivity;</span>-&gt;_view:<span class="hljs-class">Lcom/disney/common/WMWView;</span><br></code></pre></td></tr></table></figure>
+
+<p>操作指令iget-object也是用来获取类成员变量并保存在紧接的本地参数列表中。在这里把com.disney.xx.XxActivity类中的对象成员_view赋值给本地寄存器v0中。</p>
+<p>通过观察上面的static field 静态成员变量和instance field 类成员变量，可以总结以下格式：</p>
+<p><opcode> &lt;本地寄存器&gt; , [&lt;参数寄存器&gt;] , &lt;变量所属的类变量&gt; -&gt; varName:&lt;变量类型&gt;</p>
+<p>put指令和上面提到的get指令是类似的，直接看下面的例子：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs smali">const/4 v3, 0x0 <span class="hljs-built_in"></span><br><span class="hljs-built_in">sput-object </span>v3, p0, <span class="hljs-class">Lcom/disney/xx/XxActivity;</span>&gt;globalIapHandler:<span class="hljs-class">Lcom/disney/config/GlobalPurchaseHandler;</span><br></code></pre></td></tr></table></figure>
+
+<p>Java 代码表示： this.globalIapHandler &#x3D; null; (null &#x3D; 0x0)</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs smali"><span class="hljs-keyword">.local</span> v0, wait:<span class="hljs-class">Landroid/os/Message;</span> <span class="hljs-built_in"></span><br><span class="hljs-built_in">const/4 </span>v1, 0x2 <span class="hljs-built_in"></span><br><span class="hljs-built_in">iput </span>v1, v0, <span class="hljs-class">Landroid/os/Message;</span>-&gt;what:I<br></code></pre></td></tr></table></figure>
+
+<p>Java代码表示 ：wait.what&#x3D;0x2;(wait 是Message的实例)</p>
+<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><h3 id="函数定义格式"><a href="#函数定义格式" class="headerlink" title="函数定义格式"></a>函数定义格式</h3><p>function (type1type2type3…)RetVaule</p>
+<p>需要注意的是函数的参数类型需要定义为smali语法中的类型，同时参数之间不可以有其他分隔符，例子如下：</p>
+<p>helloSmali()V</p>
+<p>表示Void helloSmali()</p>
+<p>helloSmali([BI])Z</p>
+<p>表示 boolean helloSmali(byte[],int)</p>
+<p>helloSmali(ZLjava&#x2F;lang&#x2F;String;[I[I)V</p>
+<p>表示void helloSmali(boolean, String ,int[],int[])</p>
+<p>在smali中函数和成员变量一样也分为两种类型，但不同于成员变量中的static field 静态成员变量和instance field 类成员变量，函数中的是direct method和virtual method。这两个有何区别呢？简单来说，direct method 就是private函数，而virtual method 则是public 和protect函数。</p>
+<p>所以在调用函数的时候，有invoke-direct、invoke-virtual，另外还有invoke-static、invoke-super以及invoke-interface 等几种不同的指令。同时还存在着invoke-XXX&#x2F;range指令，这是参数传参个数大于4的时候调用的指令。</p>
+<h4 id="invoke-static"><a href="#invoke-static" class="headerlink" title="invoke-static"></a>invoke-static</h4><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs smali">invoke-static &#123;&#125;, <span class="hljs-class">Lcom/disney/xx/UnlockHelper;</span>-&gt;unlockCrankypack()Z<br></code></pre></td></tr></table></figure>
+
+<p>invoke-static 表示调用的是类静态函数。Java代码表示为：UnlockHelper.unlockCrankypack()，这里注意到invoke-static后面紧接着{}，表示的是调用该方法的实例+参数列表，由于这个方法不需要参数，也是类静态方法所以{}内为空，再看一例子：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs smali">const-string v0, <span class="hljs-string">&quot;fmodex&quot;</span> <span class="hljs-built_in"></span><br><span class="hljs-built_in">invoke-static </span>&#123;v0&#125;, <span class="hljs-class">Ljava/lang/System;</span>-&gt;loadLibrary(<span class="hljs-class">Ljava/lang/String;</span>)V<br></code></pre></td></tr></table></figure>
+
+<p>这里调用的是static void System.loadLibrary(String)来加载so库，而v0则表示参数fmodex。</p>
+<h4 id="invoke-super"><a href="#invoke-super" class="headerlink" title="invoke-super"></a>invoke-super</h4><p>表示调用父类方法用的指令，在重载的方法都可以看到。</p>
+<h4 id="invoke-direct"><a href="#invoke-direct" class="headerlink" title="invoke-direct"></a>invoke-direct</h4><p>表示调用private函数的方法，如：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs smali">invoke-direct &#123;p0&#125;, <span class="hljs-class">Lcom/disney/xx/XxActivity;</span>-&gt;getGlobalIapHandler()<span class="hljs-class">Lcom/disney/config/GlobalPurchaseHandler;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>这里的GlobalPurchaseHandler getGloballapHandler()表示getGloballapHandler()是定义在XxActivity类中，权限为private的方法。</p>
+<h4 id="invoke-virtual"><a href="#invoke-virtual" class="headerlink" title="invoke-virtual"></a>invoke-virtual</h4><p>表示调用的是protected或public函数</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs smali">sget-object v0, <span class="hljs-class">Lcom/disney/xx/XxActivity;</span>-&gt;shareHandler:<span class="hljs-class">Landroid/os/Handler;</span> <span class="hljs-built_in"></span><br><span class="hljs-built_in">invoke-virtual </span>&#123;v0, v3&#125;, <span class="hljs-class">Landroid/os/Handler;</span>-&gt;removeCallbacksAndMessages(<span class="hljs-class">Ljava/lang/Object;</span>)V<br></code></pre></td></tr></table></figure>
+
+<p>这里的v0可以表示shareHandler:Landroid&#x2F;os&#x2F;Handler,v3则表示为removeCallbacksAndMessages方法的Ljava&#x2F;lang&#x2F;Object;类型的传参。</p>
+<h4 id="invoke-xxxxx-x2F-range"><a href="#invoke-xxxxx-x2F-range" class="headerlink" title="invoke-xxxxx&#x2F;range"></a>invoke-xxxxx&#x2F;range</h4><p>表示当方法参数&gt;&#x3D;5时，需要在后面加上&#x2F;range。</p>
+<h4 id="取函数返回值操作"><a href="#取函数返回值操作" class="headerlink" title="取函数返回值操作"></a>取函数返回值操作</h4><p>在smali代码中，如果调用的函数返回非void，那么还需要用到move-result（返回基本数据类型）和move-result-object（返回对象）：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs smali">const/4 v2, 0x0 <span class="hljs-built_in"></span><br><span class="hljs-built_in">invoke-virtual </span>&#123;p0, v2&#125;, <span class="hljs-class">Lcom/disney/xx/XxActivity;</span>-&gt;getPreferences(I)<span class="hljs-class">Landroid/content/SharedPreferences;</span> <span class="hljs-built_in"></span><br><span class="hljs-built_in">move-result-object </span>v1<br></code></pre></td></tr></table></figure>
+
+<p>v1表示调用this.getPreferences(0)方法返回的SharedPreferences类型的对象。</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs smali">invoke-virtual &#123;v2&#125;, <span class="hljs-class">Ljava/lang/String;</span>-&gt;length()I <span class="hljs-built_in"></span><br><span class="hljs-built_in">move-result </span>v2<br></code></pre></td></tr></table></figure>
+
+<p>v2 表示 String.length() 返回的 int 基本类型。</p>
+<h2 id="举例分析"><a href="#举例分析" class="headerlink" title="举例分析"></a>举例分析</h2><p>通过举例进一步对smali语法进行分析：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs smali"><span class="hljs-keyword">.method</span><span class="hljs-keyword"> protected</span> onDestroy()V<br><span class="hljs-keyword">    .locals</span> 0<br> <br><span class="hljs-keyword">    .line</span> 79<br>   <span class="hljs-built_in"> invoke-super </span>&#123;p0&#125;, <span class="hljs-class">Landroidx/appcompat/app/AppCompatActivity;</span>-&gt;onDestroy()V<br> <br><span class="hljs-keyword">    .line</span> 80<br>   <span class="hljs-built_in"> invoke-virtual </span>&#123;p0&#125;, <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity;</span>-&gt;removeCallbacks()V<br> <br><span class="hljs-keyword">    .line</span> 81<br>   <span class="hljs-built_in"> return-void</span><br><span class="hljs-built_in"></span><span class="hljs-keyword">.end method</span><br></code></pre></td></tr></table></figure>
+
+<p>熟悉的onDextroy()函数。首先看到函数内第一句： .locals 0，表示在这个函数中用到的本地寄存器的个数，这里因为调用的方法没有使用到本地寄存器，因而本地寄存器个数为0.如果在该方法中添加：this.isExited &#x3D; true，那么上述方法应该为：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs smali"><span class="hljs-keyword">.method</span><span class="hljs-keyword"> protected</span> onDestroy()V<br><span class="hljs-keyword">    .locals</span> 1<br> <br><span class="hljs-keyword">    .line</span> 79<br>   <span class="hljs-built_in"> invoke-super </span>&#123;p0&#125;, <span class="hljs-class">Landroidx/appcompat/app/AppCompatActivity;</span>-&gt;onDestroy()V<br> <br><span class="hljs-keyword">    .line</span> 80<br>   <span class="hljs-built_in"> invoke-virtual </span>&#123;p0&#125;, <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity;</span>-&gt;removeCallbacks()V<br> <br><span class="hljs-keyword">    .line</span> 81<br>   <span class="hljs-built_in"> const/4 </span>v0, 0x1<br>   <span class="hljs-built_in"> iput-boolean </span>v0, p0, <span class="hljs-class">Lcom/happy/learnsmali/BaseActivity;</span>-&gt;exited:Z<br> <br><span class="hljs-keyword">    .line</span> 82<br>   <span class="hljs-built_in"> return-void</span><br><span class="hljs-built_in"></span><span class="hljs-keyword">.end method</span><br></code></pre></td></tr></table></figure>
+
+<p>因为修改后的onDestroy()函数使用到了一个本地寄存器，所以把 .locals 0修改为 .locals 1。另外可能注意到了 .line这个标识符，他表示smali这一行代码在Java中对应代码的行号。平常我们在Android Studio上调试程序发生崩溃的时候，logcat 中提示发生崩溃所在的代码行号也是该值。当然，该标识符不是必须的，但是为了方便调试还是建议保留。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android%E9%80%86%E5%90%91%E7%9F%A5%E8%AF%86/" class="category-chain-item">Android逆向知识</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Android-%E9%80%86%E5%90%91/">#Android 逆向</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Android Smali</div>
+      <div>http://example.com/2023/07/11/Smali/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>秦杰</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年7月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/07/11/java%E4%BF%AE%E9%A5%B0%E7%AC%A6/" title="java修饰符">
+                        <span class="hidden-mobile">java修饰符</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/custom.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!-- 樱花 -->
+<script type="text/javascript" src="/js/sakura.js"></script>
